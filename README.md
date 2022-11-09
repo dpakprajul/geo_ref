@@ -3,12 +3,12 @@
 
 ### Need to change the UI of the dialog box
 
-#### Input Link should be like: D:\RID-master\RID-master\data\gutter_image_trash (this is also input which is the folder of georeferenced image)
-#### Output Link should be like: D:\RID-master\RID-master\data\gutter_image_trash (this is also an input which is the folder of unreferenced predicted image)
-#### The last one is the output link:  D:\output (this is an output where the Output Link images would be georeferenced and stored in a folder)
+#### Georeferenced Image should be like: D:\RID-master\RID-master\data\gutter_image_trash (this is also input which is the folder of georeferenced image)
+#### Unreferenced Image should be like: D:\RID-master\RID-master\data\gutter_image_trash (this is also an input which is the folder of unreferenced predicted image)
+#### The last one is the Output Link:  D:\output (this is an output where the Output Link images would be georeferenced and stored in a folder)
 
 
-![Capture](https://user-images.githubusercontent.com/38970123/200924006-c69052a9-2d23-48fb-9077-b1b861a5d028.PNG)
+![image](https://user-images.githubusercontent.com/38970123/200932378-eebd8eaa-41b9-4e56-a714-760fd887b1bc.png)
 
 ### TO DO
 #### Need to make a drop down where user can choose the input file format. For example: png, tif, jpeg
