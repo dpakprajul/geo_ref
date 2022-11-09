@@ -42,3 +42,28 @@ class GeoreferencerDialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
+        self.pbPrintHelloWorld.clicked.connect(self.print_helloworldClicked)
+        self.calculateOutput.clicked.connect(self.calculateOutputClicked)
+
+    def calculateOutputClicked(self):
+        input1 = self.inputLink.toPlainText()
+        input2 = self.outputLink.toPlainText()
+        print("Input 1: " + input1)
+        print("Input 2: " + input2)
+        self.create_geotiff(input1, input2)
+        
+
+    
+
+       
+
+    
+    def print_helloworldClicked(self):
+        if self.cbUseGerman.isChecked():
+            print("Hallo Welt")
+        else:
+            print("Hello World")
+            
+    def create_geotiff(input, image, output):
+        if not os.path.isdir(output):
+            os.mkdir(output)
