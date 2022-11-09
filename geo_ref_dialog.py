@@ -57,12 +57,12 @@ class GeoreferencerDialog(QtWidgets.QDialog, FORM_CLASS):
         #take all the images from image1 directory and store them in a list
         #image1List = os.listdir(image1)
         #print(image1List)
-        input_files = [geotif[:-4] for geotif in os.listdir(image1) if geotif[-4:] == '.png']
+        input_files = [geotif[:-4] for geotif in os.listdir(image1) if geotif[-4:] == '.tif']
         image_files = [png[:-4] for png in os.listdir(image2) if png[-4:] == '.png']
         output_files = [png[:-4] for png in os.listdir(output) if png[-4:] == '.tif']
         missing_pngs_list = [geotif for geotif in input_files if geotif not in output]
         for i, img in enumerate(missing_pngs_list):
-            geotiff_image = os.path.join(image1, img + '.png')
+            geotiff_image = os.path.join(image1, img + '.tif')
             predict_image = os.path.join(image2, img + '.png')
             output_path = os.path.join(output, img + '.tif')
             raster_src = gdal.Open(geotiff_image, gdal.GA_ReadOnly)
@@ -97,33 +97,36 @@ def save_as_geotif(bbox, image, save_path):
     ----------
     None - function saves GEOTIFF to path
     """
-    # set geotransform
-    nx = image.shape[0]
-    ny = image.shape[1]
+    try:
+        # set geotransform
+        nx = image.shape[0]
+        ny = image.shape[1]
     
 
-    xmin, ymin, xmax, ymax = [bbox[1], bbox[0], bbox[3], bbox[2]]
-    xres = (xmax - xmin) / float(nx)
-    yres = (ymax - ymin) / float(ny)
+        xmin, ymin, xmax, ymax = [bbox[1], bbox[0], bbox[3], bbox[2]]
+        xres = (xmax - xmin) / float(nx)
+        yres = (ymax - ymin) / float(ny)
 
-    geotransform = (xmin, xres, 0, ymax, 0, -yres)
+        geotransform = (xmin, xres, 0, ymax, 0, -yres)
 
-    # create the 3-band raster file
-    dst_ds = gdal.GetDriverByName('GTiff').Create(
-        save_path, ny, nx, 3, gdal.GDT_Byte)
-    #print(dst_ds)
+        # create the 3-band raster file
+        dst_ds = gdal.GetDriverByName('GTiff').Create(
+            save_path, ny, nx, 3, gdal.GDT_Byte)
+        #print(dst_ds)
 
-    dst_ds.SetGeoTransform(geotransform)  # specify coords
-    srs = osr.SpatialReference()  # establish encoding
-    srs.ImportFromEPSG(4326)  #
-    dst_ds.SetProjection(srs.ExportToWkt())  # export coords to file
-    dst_ds.GetRasterBand(1).WriteArray(
-        image[:, :, 2])  # write r-band to the raster
-    dst_ds.GetRasterBand(2).WriteArray(
-        image[:, :, 1])  # write g-band to the raster
-    dst_ds.GetRasterBand(3).WriteArray(
-        image[:, :, 0])  # write b-band to the raster
-    dst_ds.FlushCache()  # write to disk
+        dst_ds.SetGeoTransform(geotransform)  # specify coords
+        srs = osr.SpatialReference()  # establish encoding
+        srs.ImportFromEPSG(4326)  #
+        dst_ds.SetProjection(srs.ExportToWkt())  # export coords to file
+        dst_ds.GetRasterBand(1).WriteArray(
+            image[:, :, 2])  # write r-band to the raster
+        dst_ds.GetRasterBand(2).WriteArray(
+            image[:, :, 1])  # write g-band to the raster
+        dst_ds.GetRasterBand(3).WriteArray(
+            image[:, :, 0])  # write b-band to the raster
+        dst_ds.FlushCache()  # write to disk
+    except:
+        pass
     
 
     return
