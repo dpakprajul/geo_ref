@@ -21,7 +21,7 @@
 #### This image has same grayscale and could be visualized using softwares like ImageJ
 
 ## License
-This Plugin is licensed under the [GPL](http://docs.geoserver.org/latest/en/user/introduction/license.html). See also LICENSE file in this repo.
+This Plugin is licensed under the [GNU GPL](https://www.gnu.org/licenses/gpl-3.0.en.html). See also LICENSE file in this repo.
 
 ### TO DO
 #### Need to make a drop down where user can choose the input file format. For example: png, tif, jpeg
