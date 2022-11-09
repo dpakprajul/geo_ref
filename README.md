@@ -10,12 +10,14 @@
 
 ![image](https://user-images.githubusercontent.com/38970123/200932378-eebd8eaa-41b9-4e56-a714-760fd887b1bc.png)
 
+
 #### Example of input prediction image (unreferenced)
-![Capture](https://user-images.githubusercontent.com/38970123/200933563-e669fbee-b4d3-41a5-8a0c-2d34f1c82418.PNG)
+<img src="https://user-images.githubusercontent.com/38970123/200933563-e669fbee-b4d3-41a5-8a0c-2d34f1c82418.PNG" width="400" height="200">
 
 
 #### Example of output image (georeferenced image)
-![image](https://user-images.githubusercontent.com/38970123/200932999-b059b8ca-8692-48f3-bd6e-0e725343bc95.png)
+<img src="https://user-images.githubusercontent.com/38970123/200932999-b059b8ca-8692-48f3-bd6e-0e725343bc95.png" width="400" height="200">
+
 #### This image has same grayscale and could be visualized using softwares like ImageJ
 
 ### TO DO
