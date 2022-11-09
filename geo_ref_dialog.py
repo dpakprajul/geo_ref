@@ -59,12 +59,12 @@ class GeoreferencerDialog(QtWidgets.QDialog, FORM_CLASS):
         #print(image1List)
         input_files = [geotif[:-4] for geotif in os.listdir(image1) if geotif[-4:] == '.png']
         image_files = [png[:-4] for png in os.listdir(image2) if png[-4:] == '.png']
-        output_files = [png[:-4] for png in os.listdir(output) if png[-4:] == '.png']
+        output_files = [png[:-4] for png in os.listdir(output) if png[-4:] == '.tif']
         missing_pngs_list = [geotif for geotif in input_files if geotif not in output]
         for i, img in enumerate(missing_pngs_list):
             geotiff_image = os.path.join(image1, img + '.png')
             predict_image = os.path.join(image2, img + '.png')
-            output_path = os.path.join(output, img + '.png')
+            output_path = os.path.join(output, img + '.tif')
             raster_src = gdal.Open(geotiff_image, gdal.GA_ReadOnly)
             # coordinates of upper left corner and resolution
             ulx, xres, xskew, uly, yskew, yres = raster_src.GetGeoTransform()
